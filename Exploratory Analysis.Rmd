@@ -5,10 +5,10 @@ output:
 ---
 #Exploratory Analysis of Grow Mobility's survey
 ###by Edwin N Asberg
-
+   
 #### For more information on the survey, run by Grow Mobility, please check this blogpost [here](https://medium.com/@growmobility/pesquisa-de-perfil-dos-usu%C3%A1rios-de-patinetes-e-bicicleta-yellow-em-s%C3%A3o-paulo-55728861ac57) (in Portuguese)
 
-*Disclaimer: I have no relation to the company neither to the survey project at all (having no responsibilities for the quality of data). This analysis is just an exercise done during my free time. Also, I would like to thank the Grow Mobility team who kindly made this dataset publicly available*.
+*Disclaimer: I have no relation to the company neither to the survey project at all (having no responsibilities for the quality of data). This analysis is just an exercise done during my free time. Also, I would like to thank the Grow Mobility team who kindly made this dataset publicly available.*
 
 ### The exploratory analysis starts here
 
