@@ -1,0 +1,373 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{}
+    \pretitle{\vspace{\droptitle}}
+  \posttitle{}
+    \author{}
+    \preauthor{}\postauthor{}
+    \date{}
+    \predate{}\postdate{}
+  
+
+\begin{document}
+
+\section{Exploratory Analysis of Grow Mobility's
+survey}\label{exploratory-analysis-of-grow-mobilitys-survey}
+
+\subsubsection{by Edwin N Asberg}\label{by-edwin-n-asberg}
+
+\subsubsection{\texorpdfstring{For more information on the survey, run
+by Grow Mobility, please check this blogpost {[}here{]}
+(\url{https://medium.com/@growmobility/pesquisa-de-perfil-dos-usu\%C3\%A1rios-de-patinetes-e-bicicleta-yellow-em-s\%C3\%A3o-paulo-55728861ac57})}{For more information on the survey, run by Grow Mobility, please check this blogpost {[}here{]} (https://medium.com/@growmobility/pesquisa-de-perfil-dos-usu\%C3\%A1rios-de-patinetes-e-bicicleta-yellow-em-s\%C3\%A3o-paulo-55728861ac57)}}\label{for-more-information-on-the-survey-run-by-grow-mobility-please-check-this-blogpost-here-httpsmedium.comgrowmobilitypesquisa-de-perfil-dos-usuc3a1rios-de-patinetes-e-bicicleta-yellow-em-sc3a3o-paulo-55728861ac57}
+
+\emph{Disclaimer: I have no relation to the company neither to the
+survey project at all (having no responsibilities for the quality of
+data). This analysis is just an exercise done during my free time. Also,
+I would like to thank the Grow Mobility team who kindly made this
+dataset publicly available}.
+
+\subsubsection{The exploratory analysis starts
+here}\label{the-exploratory-analysis-starts-here}
+
+\emph{Loading packages\ldots{}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 3.5.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(scales)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 3.5.3
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\textbf{Reading our dataset, that's also available
+\href{https://archive.org/download/pesquisa_micromobilidade_yellow/pesquisa_micromobilidade_yellow.rar}{here}
+}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{read.csv2}\NormalTok{(}\StringTok{"pesquisa_micromobilidade_yellow.csv"}\NormalTok{, }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{str}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    7576 obs. of  45 variables:
+##  $ cod                      : chr  "Y0001" "Y0002" "Y0003" "Y0004" ...
+##  $ pais                     : chr  "BR" "BR" "BR" "BR" ...
+##  $ cidade                   : chr  "SAO PAULO" "SAO PAULO" "SAO PAULO" "SAO PAULO" ...
+##  $ veiculo                  : chr  "BICICLETA" "BICICLETA" "BICICLETA" "BICICLETA" ...
+##  $ timestamp_resp           : chr  "07/03/2019 14:12" "07/03/2019 14:14" "07/03/2019 14:17" "07/03/2019 14:18" ...
+##  $ genero                   : chr  "MASCULINO" "MASCULINO" "MASCULINO" "MASCULINO" ...
+##  $ renda_familiar           : chr  "DE 05 A 10 SM" "DE 10 A 20 SM" "DE 01 A 02 SM" "MAIS DE 20 SM" ...
+##  $ local_residencia         : chr  "DENTRO" "DENTRO" "FORA - ZONA NORTE" "DENTRO" ...
+##  $ posse_bicicleta          : int  0 1 0 0 1 0 1 0 1 0 ...
+##  $ posse_bicicleta_eletrica : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ posse_patinete_eletrica  : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ posse_motocicleta        : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ posse_automovel          : int  1 0 0 1 0 0 1 0 1 0 ...
+##  $ posse_nenhum_desses      : int  0 0 1 0 0 1 0 1 0 1 ...
+##  $ motivo                   : chr  "OUTROS" "TRABALHO" "LAZER" "TRABALHO" ...
+##  $ migracao_modal           : chr  "SIM" "SIM" "SIM" "SIM" ...
+##  $ m_caminhada              : int  1 1 1 0 0 0 0 1 1 1 ...
+##  $ m_app_taxi               : int  1 0 0 1 0 0 1 0 0 1 ...
+##  $ m_automovel              : int  1 0 0 1 0 0 1 0 0 1 ...
+##  $ m_onibus_local           : int  0 0 1 0 1 0 1 1 1 1 ...
+##  $ m_onibus_corredor        : int  0 0 0 0 0 1 0 0 0 1 ...
+##  $ m_metro_trem             : int  0 0 1 0 1 0 0 0 0 1 ...
+##  $ m_nao                    : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ integracao               : chr  " NAO" " NAO" " SIM" " NAO" ...
+##  $ i_metro                  : int  0 0 0 0 1 0 1 1 0 0 ...
+##  $ i_trem                   : int  0 0 0 0 0 0 1 0 0 0 ...
+##  $ i_onibus                 : int  0 0 1 0 1 0 1 0 0 0 ...
+##  $ i_fretado                : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ i_automovel              : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ i_app_taxi               : int  0 0 0 0 0 0 0 0 1 0 ...
+##  $ i_nao                    : int  1 1 0 1 0 1 0 0 0 1 ...
+##  $ acidente                 : chr  " SIM" " NAO" " NAO" " NAO" ...
+##  $ a_caminhada              : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ a_bicicleta_propria      : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ a_bicicleta_compartilhada: int  0 0 0 0 0 0 0 0 0 1 ...
+##  $ a_patinete_compartilhada : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ a_motocicleta            : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ a_automovel              : int  1 0 0 0 0 0 0 0 0 1 ...
+##  $ a_transporte_coletivo    : int  0 0 0 0 0 0 0 0 0 1 ...
+##  $ a_nao                    : int  0 1 1 1 1 1 1 1 1 0 ...
+##  $ calcadas_largas_planas   : int  3 5 2 1 1 1 4 2 5 2 ...
+##  $ ciclovias_ciclofaixas    : int  1 4 4 2 2 5 2 1 3 5 ...
+##  $ traffic_calming          : int  4 1 1 3 5 3 5 4 1 1 ...
+##  $ respeito_motoristas      : int  2 2 5 5 3 4 1 3 2 4 ...
+##  $ capacete                 : int  5 3 3 4 4 2 3 5 4 3 ...
+\end{verbatim}
+
+The raw data has 7576 lines and 45 variables.
+
+\textbf{Understanging Bike vs Scooter usage}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(., }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{veiculo)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y=}\NormalTok{..prop..,}\DataTypeTok{group =} \DecValTok{1}\NormalTok{), }\DataTypeTok{stat=}\StringTok{"count"}\NormalTok{, }\DataTypeTok{position=}\KeywordTok{position_dodge}\NormalTok{()) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{scales}\OperatorTok{::}\KeywordTok{percent}\NormalTok{(}\KeywordTok{round}\NormalTok{(..prop..,}\DecValTok{2}\NormalTok{)), }
+                \DataTypeTok{y=}\NormalTok{..prop..,}\DataTypeTok{group =} \DecValTok{1}\NormalTok{), }\DataTypeTok{stat=}\StringTok{"count"}\NormalTok{, }\DataTypeTok{vjust=}\OperatorTok{-}\NormalTok{.}\DecValTok{5}\NormalTok{, }\DataTypeTok{position=}\KeywordTok{position_dodge}\NormalTok{(.}\DecValTok{9}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{limits=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{labels =}\NormalTok{ scales}\OperatorTok{::}\NormalTok{percent) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_discrete}\NormalTok{(}\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{'Bike'}\NormalTok{,}\StringTok{'Electric Scooter'}\NormalTok{))  }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=} \StringTok{"Bike vs Scooter"}\NormalTok{,}
+       \DataTypeTok{subtitle =} \StringTok{"Which vehicle the respondent used before the survey"}\NormalTok{,}
+       \DataTypeTok{y=}\StringTok{"Sample Prop"}\NormalTok{,}
+       \DataTypeTok{x=}\StringTok{'Vehicle'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Exploratory_Analysis_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\textbf{Understanging Gender Proportion in the survey sample}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(., }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{genero)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y=}\NormalTok{..prop..,}\DataTypeTok{group =} \DecValTok{1}\NormalTok{), }\DataTypeTok{stat=}\StringTok{"count"}\NormalTok{, }\DataTypeTok{position=}\KeywordTok{position_dodge}\NormalTok{()) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{scales}\OperatorTok{::}\KeywordTok{percent}\NormalTok{(}\KeywordTok{round}\NormalTok{(..prop..,}\DecValTok{2}\NormalTok{)), }
+                \DataTypeTok{y=}\NormalTok{..prop..,}\DataTypeTok{group =} \DecValTok{1}\NormalTok{), }\DataTypeTok{stat=}\StringTok{"count"}\NormalTok{, }\DataTypeTok{vjust=}\OperatorTok{-}\NormalTok{.}\DecValTok{5}\NormalTok{, }\DataTypeTok{position=}\KeywordTok{position_dodge}\NormalTok{(.}\DecValTok{9}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{limits=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{labels =}\NormalTok{ scales}\OperatorTok{::}\NormalTok{percent) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_discrete}\NormalTok{(}\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{'Female'}\NormalTok{,}\StringTok{'Male'}\NormalTok{,}\StringTok{'Other'}\NormalTok{))  }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=} \StringTok{"Gender"}\NormalTok{,}
+       \DataTypeTok{y=}\StringTok{"Sample Proportion"}\NormalTok{,}
+       \DataTypeTok{x=}\StringTok{'Gender'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Exploratory_Analysis_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\textbf{Understanging Income Level of survey sample}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(., }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{renda_familiar)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y=}\NormalTok{..prop..,}\DataTypeTok{group =} \DecValTok{1}\NormalTok{), }\DataTypeTok{stat=}\StringTok{"count"}\NormalTok{, }\DataTypeTok{position=}\KeywordTok{position_dodge}\NormalTok{()) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{scales}\OperatorTok{::}\KeywordTok{percent}\NormalTok{(}\KeywordTok{round}\NormalTok{(..prop..,}\DecValTok{2}\NormalTok{)), }
+                \DataTypeTok{y=}\NormalTok{..prop..,}\DataTypeTok{group =} \DecValTok{1}\NormalTok{), }\DataTypeTok{stat=}\StringTok{"count"}\NormalTok{, }\DataTypeTok{vjust=}\OperatorTok{-}\NormalTok{.}\DecValTok{5}\NormalTok{, }\DataTypeTok{position=}\KeywordTok{position_dodge}\NormalTok{(.}\DecValTok{9}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{limits=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{labels =}\NormalTok{ scales}\OperatorTok{::}\NormalTok{percent) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_discrete}\NormalTok{(}\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{'< 1 M.W.'}\NormalTok{,}
+                              \StringTok{'01 to 02'}\NormalTok{,}
+                              \StringTok{'02 to 03'}\NormalTok{,}
+                              \StringTok{'03 to 05'}\NormalTok{,}
+                              \StringTok{'05 to 10'}\NormalTok{,}
+                              \StringTok{'10 to 20'}\NormalTok{,}
+                              \StringTok{'> 20 M.W.'}\NormalTok{))  }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=} \StringTok{"Family Income (in BR minimum wages)"}\NormalTok{,}
+       \DataTypeTok{subtitle =} \StringTok{"BR minimum wage in April 2019: R$998 (or ~US$259 [rate from Apr 1st])"}\NormalTok{,}
+       \DataTypeTok{y=}\StringTok{"Sample Proportion"}\NormalTok{,}
+       \DataTypeTok{x=}\StringTok{'Family Income'}\NormalTok{,}
+       \DataTypeTok{caption =} \StringTok{'Groups have overlap of values - data was provided as it is.'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Exploratory_Analysis_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\textbf{Reasons why using Grow vehicle in the last trip}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(., }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{motivo)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y=}\NormalTok{..prop..,}\DataTypeTok{group =} \DecValTok{1}\NormalTok{), }\DataTypeTok{stat=}\StringTok{"count"}\NormalTok{, }\DataTypeTok{position=}\KeywordTok{position_dodge}\NormalTok{()) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{scales}\OperatorTok{::}\KeywordTok{percent}\NormalTok{(}\KeywordTok{round}\NormalTok{(..prop..,}\DecValTok{2}\NormalTok{)), }
+                \DataTypeTok{y=}\NormalTok{..prop..,}\DataTypeTok{group =} \DecValTok{1}\NormalTok{), }\DataTypeTok{stat=}\StringTok{"count"}\NormalTok{, }\DataTypeTok{vjust=}\OperatorTok{-}\NormalTok{.}\DecValTok{5}\NormalTok{, }\DataTypeTok{position=}\KeywordTok{position_dodge}\NormalTok{(.}\DecValTok{9}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{limits=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{labels =}\NormalTok{ scales}\OperatorTok{::}\NormalTok{percent) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_discrete}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{c}\NormalTok{(}\StringTok{'COMPRAS'}\NormalTok{,}\StringTok{'EDUCACAO'}\NormalTok{,}
+                              \StringTok{'TRABALHO'}\NormalTok{,}\StringTok{'LAZER'}\NormalTok{,}
+                              \StringTok{'OUTROS'}\NormalTok{), }
+                   \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{'Shopping'}\NormalTok{,}\StringTok{'Education'}\NormalTok{,}
+                              \StringTok{'Commuting'}\NormalTok{,}\StringTok{'Leisure'}\NormalTok{,}
+                              \StringTok{'Other'}\NormalTok{))  }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=} \StringTok{"Motive of Trip"}\NormalTok{,}
+       \DataTypeTok{subtitle =} \StringTok{"Main reason for the last trip of the respondent (with Grow's bike or scooter)"}\NormalTok{,}
+       \DataTypeTok{y=}\StringTok{"Sample Prop"}\NormalTok{,}
+       \DataTypeTok{x=}\StringTok{'Motive'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Exploratory_Analysis_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\textbf{Ownership of vehicles}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ownership <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(}\KeywordTok{sum}\NormalTok{(df}\OperatorTok{$}\NormalTok{posse_bicicleta),}
+                           \KeywordTok{sum}\NormalTok{(df}\OperatorTok{$}\NormalTok{posse_bicicleta_eletrica),}
+                           \KeywordTok{sum}\NormalTok{(df}\OperatorTok{$}\NormalTok{posse_patinete_eletrica),}
+                           \KeywordTok{sum}\NormalTok{(df}\OperatorTok{$}\NormalTok{posse_motocicleta),}
+                           \KeywordTok{sum}\NormalTok{(df}\OperatorTok{$}\NormalTok{posse_automovel))}
+\NormalTok{ownership <-}\StringTok{ }\NormalTok{ownership}\OperatorTok{/}\KeywordTok{nrow}\NormalTok{(df)}
+\KeywordTok{colnames}\NormalTok{(ownership) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'Bicycle'}\NormalTok{,}
+                         \StringTok{'Electric Bicycle'}\NormalTok{,}
+                         \StringTok{'Electric Scooter'}\NormalTok{,}
+                         \StringTok{'Motorcycle'}\NormalTok{,}
+                         \StringTok{'Car'}\NormalTok{)}
+\NormalTok{ownership <-}\StringTok{ }\KeywordTok{t}\NormalTok{(ownership)}
+\NormalTok{ownership <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(ownership,}\KeywordTok{as.data.frame}\NormalTok{(}\KeywordTok{rownames}\NormalTok{(ownership)))}
+\KeywordTok{colnames}\NormalTok{(ownership) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'proportion'}\NormalTok{,}\StringTok{'item'}\NormalTok{)}
+
+\KeywordTok{ggplot}\NormalTok{(ownership, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y=}\NormalTok{proportion, }\DataTypeTok{x=}\NormalTok{item)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{position=}\StringTok{"dodge"}\NormalTok{, }\DataTypeTok{stat=}\StringTok{"identity"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{scales}\OperatorTok{::}\KeywordTok{percent}\NormalTok{(}\KeywordTok{round}\NormalTok{(proportion,}\DecValTok{2}\NormalTok{)), }
+                \DataTypeTok{y=}\NormalTok{proportion,}\DataTypeTok{group =} \DecValTok{1}\NormalTok{), }\DataTypeTok{vjust=}\OperatorTok{-}\NormalTok{.}\DecValTok{5}\NormalTok{, }\DataTypeTok{position=}\KeywordTok{position_dodge}\NormalTok{(.}\DecValTok{9}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{limits=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{labels =}\NormalTok{ scales}\OperatorTok{::}\NormalTok{percent)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=} \StringTok{"Ownership of different vehicles"}\NormalTok{,}
+       \DataTypeTok{subtitle =} \StringTok{"Multiple answers allowed"}\NormalTok{,}
+       \DataTypeTok{y=}\StringTok{"Sample Prop"}\NormalTok{,}
+       \DataTypeTok{x=}\StringTok{'Vehicle Owned'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Exploratory_Analysis_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\subsubsection{THE END (for now)}\label{the-end-for-now}
+
+
+\end{document}

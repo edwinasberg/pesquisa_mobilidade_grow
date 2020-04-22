@@ -1,0 +1,140 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+#Exploratory Analysis of Grow Mobility's survey
+###by Edwin N Asberg
+
+#### For more information on the survey, run by Grow Mobility, please check this blogpost [here](https://medium.com/@growmobility/pesquisa-de-perfil-dos-usu%C3%A1rios-de-patinetes-e-bicicleta-yellow-em-s%C3%A3o-paulo-55728861ac57) (in Portuguese)
+
+*Disclaimer: I have no relation to the company neither to the survey project at all (having no responsibilities for the quality of data). This analysis is just an exercise done during my free time. Also, I would like to thank the Grow Mobility team who kindly made this dataset publicly available*.
+
+### The exploratory analysis starts here
+
+*Loading packages...*
+
+*library(ggplot2)* 
+*library(scales)* 
+*library(dplyr)* 
+
+```{r, include=FALSE} 
+library(ggplot2)
+library(scales)
+library(dplyr)
+``` 
+
+```{r, include=FALSE} 
+setwd("C:/Users/enasb/Google Drive/Data Science/Grow - Pesquisa Micromobilidade/pesquisa_mobilidade_grow")
+``` 
+
+**Reading our dataset, that's also available [here](https://archive.org/download/pesquisa_micromobilidade_yellow/pesquisa_micromobilidade_yellow.rar)  **
+```{r} 
+df <- read.csv2("pesquisa_micromobilidade_yellow.csv", stringsAsFactors = FALSE)
+str(df)
+``` 
+The raw data has `r nrow(df)` lines and `r ncol(df)` variables.
+
+**Understanging Bike vs Scooter usage**
+```{r}
+df %>% 
+  ggplot(., aes(x=veiculo)) + 
+  geom_bar(aes(y=..prop..,group = 1), stat="count", position=position_dodge()) +
+  geom_text(aes(label=scales::percent(round(..prop..,2)), 
+                y=..prop..,group = 1), stat="count", vjust=-.5, position=position_dodge(.9)) +
+  scale_y_continuous(limits=c(0,1),labels = scales::percent) +
+  scale_x_discrete(labels = c('Bike','Electric Scooter'))  +
+  labs(title= "Bike vs Scooter",
+       subtitle = "Which vehicle the respondent used before the survey",
+       y="Sample Prop",
+       x='Vehicle')
+```
+
+**Understanging Gender Proportion in the survey sample**
+```{r}
+df %>% 
+  ggplot(., aes(x=genero)) + 
+  geom_bar(aes(y=..prop..,group = 1), stat="count", position=position_dodge()) +
+  geom_text(aes(label=scales::percent(round(..prop..,2)), 
+                y=..prop..,group = 1), stat="count", vjust=-.5, position=position_dodge(.9)) +
+  scale_y_continuous(limits=c(0,1),labels = scales::percent) +
+  scale_x_discrete(labels = c('Female','Male','Other'))  +
+  labs(title= "Gender",
+       y="Sample Proportion",
+       x='Gender')
+```
+
+**Understanging Income Level of survey sample**
+```{r}
+df %>% 
+  ggplot(., aes(x=renda_familiar)) + 
+  geom_bar(aes(y=..prop..,group = 1), stat="count", position=position_dodge()) +
+  geom_text(aes(label=scales::percent(round(..prop..,2)), 
+                y=..prop..,group = 1), stat="count", vjust=-.5, position=position_dodge(.9)) +
+  scale_y_continuous(limits=c(0,1),labels = scales::percent) +
+  scale_x_discrete(labels = c('< 1 M.W.',
+                              '01 to 02',
+                              '02 to 03',
+                              '03 to 05',
+                              '05 to 10',
+                              '10 to 20',
+                              '> 20 M.W.'))  +
+  labs(title= "Family Income (in BR minimum wages)",
+       subtitle = "BR minimum wage in April 2019: R$998 (or ~US$259 [rate from Apr 1st])",
+       y="Sample Proportion",
+       x='Family Income',
+       caption = 'Groups have overlap of values - data was provided as it is.')
+  
+```
+
+**Reasons why using Grow vehicle in the last trip**
+```{r}
+df %>% 
+  ggplot(., aes(x=motivo)) + 
+  geom_bar(aes(y=..prop..,group = 1), stat="count", position=position_dodge()) +
+  geom_text(aes(label=scales::percent(round(..prop..,2)), 
+                y=..prop..,group = 1), stat="count", vjust=-.5, position=position_dodge(.9)) +
+  scale_y_continuous(limits=c(0,1),labels = scales::percent) +
+  scale_x_discrete(breaks = c('COMPRAS','EDUCACAO',
+                              'TRABALHO','LAZER',
+                              'OUTROS'), 
+                   labels = c('Shopping','Education',
+                              'Commuting','Leisure',
+                              'Other'))  +
+  labs(title= "Motive of Trip",
+       subtitle = "Main reason for the last trip of the respondent (with Grow's bike or scooter)",
+       y="Sample Prop",
+       x='Motive')
+  
+```
+
+**Ownership of vehicles**
+```{r}
+ownership <- cbind(sum(df$posse_bicicleta),
+                           sum(df$posse_bicicleta_eletrica),
+                           sum(df$posse_patinete_eletrica),
+                           sum(df$posse_motocicleta),
+                           sum(df$posse_automovel))
+ownership <- ownership/nrow(df)
+colnames(ownership) <- c('Bicycle',
+                         'Electric Bicycle',
+                         'Electric Scooter',
+                         'Motorcycle',
+                         'Car')
+ownership <- t(ownership)
+ownership <- cbind(ownership,as.data.frame(rownames(ownership)))
+colnames(ownership) <- c('proportion','item')
+
+ggplot(ownership, aes(y=proportion, x=item)) + 
+  geom_bar(position="dodge", stat="identity") +
+  geom_text(aes(label=scales::percent(round(proportion,2)), 
+                y=proportion,group = 1), vjust=-.5, position=position_dodge(.9)) +
+  scale_y_continuous(limits=c(0,1),labels = scales::percent)+
+  labs(title= "Ownership of different vehicles",
+       subtitle = "Multiple answers allowed",
+       y="Sample Prop",
+       x='Vehicle Owned')
+  
+```
+
+##### THE END (for now)
