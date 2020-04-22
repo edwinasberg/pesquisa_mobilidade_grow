@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 output:
   html_document: default
@@ -9,22 +10,38 @@ output:
 #### For more information on the survey, run by Grow Mobility, please check this blogpost [here](https://medium.com/@growmobility/pesquisa-de-perfil-dos-usu%C3%A1rios-de-patinetes-e-bicicleta-yellow-em-s%C3%A3o-paulo-55728861ac57) (in Portuguese)
 
 *Disclaimer: I have no relation to the company neither to the survey project at all (having no responsibilities for the quality of data). This analysis is just an exercise done during my free time. Also, I would like to thank the Grow Mobility team who kindly made this dataset publicly available.*
+=======
+#Exploratory Analysis of Grow Mobility's survey
+###by Edwin N Asberg
+
+### For more information on the survey, run by Grow Mobility, please check this blogpost [here] (https://medium.com/@growmobility/pesquisa-de-perfil-dos-usu%C3%A1rios-de-patinetes-e-bicicleta-yellow-em-s%C3%A3o-paulo-55728861ac57) 
+
+*Disclaimer: I have no relation to the company neither to the survey project at all (having no responsibilities for the quality of data). This analysis is just an exercise done during my free time. Also, I would like to thank the Grow Mobility team who kindly made this dataset publicly available*.
+>>>>>>> 31f42ee3e56386ab129296f781e681f3b9c583c9
 
 ### The exploratory analysis starts here
 
 *Loading packages...*
+<<<<<<< HEAD
 
 *library(ggplot2)* 
 *library(scales)* 
 *library(dplyr)* 
 
 ```{r, include=FALSE} 
+=======
+```{r, echo=TRUE, results=FALSE} 
+>>>>>>> 31f42ee3e56386ab129296f781e681f3b9c583c9
 library(ggplot2)
 library(scales)
 library(dplyr)
 ``` 
 
+<<<<<<< HEAD
 ```{r, include=FALSE} 
+=======
+```{r, echo=FALSE, results=FALSE} 
+>>>>>>> 31f42ee3e56386ab129296f781e681f3b9c583c9
 setwd("C:/Users/enasb/Google Drive/Data Science/Grow - Pesquisa Micromobilidade/pesquisa_mobilidade_grow")
 ``` 
 
@@ -137,4 +154,8 @@ ggplot(ownership, aes(y=proportion, x=item)) +
   
 ```
 
+<<<<<<< HEAD
 ##### THE END (for now)
+=======
+### THE END (for now)
+>>>>>>> 31f42ee3e56386ab129296f781e681f3b9c583c9
